@@ -6,38 +6,22 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.tim.application.timeShark.db;
+package com.tim.application.timeShark.RW;
+
+// Note: Included getters and setters (Didn't write out get & set methods).
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
-@Table(name = "STAFF")
 @Getter
 @Setter
-@Entity
-@NoArgsConstructor
-public class StaffEntity {
 
-    @Id
-    @Column(name = "id")
+public class RWStaff {
+
     private Integer id;
-
-    @Column(name = "management")
     private Boolean management;
-
-    @Column(name = "name")
     private String staffName;
-
-    @Column(name = "contract")
     private String contract;
-
-    @Column(name = "hours")
     private Integer hours;
 
 }

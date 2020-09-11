@@ -6,21 +6,23 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.tim.application.timeShark.model;
+package com.tim.application.timeShark;
 
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
-public class Staff {
 
-    private Integer id;
-    private Boolean management;
-    private String name;
-    private String contract;
-    private Integer hours;
+// Differs from ScheduleResource in that it includes ShiftDay.
+public class ScheduleResource {
+
+    List<StaffResource> staffResources;
+    List<ShiftResource> shiftResources;
 
 }
+
