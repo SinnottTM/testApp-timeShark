@@ -8,19 +8,22 @@
 
 package com.tim.application.timeShark.model;
 
+
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.Instant;
+
 @Getter
 @Setter
 @Builder
-public class Staff {
+public class Shift {
 
     private Integer id;
-    private Boolean management;
-    private String name;
-    private String contract;
-    private Integer hours;
+    private String shifts;
+    private Instant shiftDate;
+    private Integer staffId;
 
 }
+

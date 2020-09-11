@@ -8,27 +8,35 @@
 
 package com.tim.application.timeShark.service;
 
-import com.tim.application.timeShark.db.StaffRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.tim.application.timeShark.StaffResource;
+import com.tim.application.timeShark.db.StaffEntity;
+import com.tim.application.timeShark.model.Staff;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StaffFactory {
 
-    @Autowired
-    StaffRepository staffRepository;
+    public static Staff fromEntity(StaffEntity staffEntity) {
+        return Staff.builder()
+                .id(staffEntity.getId())
+                .management(staffEntity.getManagement())
+                .name(staffEntity.getStaffName())
+                .contract(staffEntity.getContract())
+                .hours(staffEntity.getHours())
+                .build();
+    }
 
-    /*
-
-    public StaffEntity fromModel(Staff staff) {
-        return StaffEntity.builder()
+    public static StaffResource fromModel(Staff staff) {
+        return StaffResource.builder()
                 .id(staff.getId())
-                .management(staff.isManagement())
+                .management(staff.getManagement())
                 .name(staff.getName())
                 .contract(staff.getContract())
                 .hours(staff.getHours())
                 .build();
     }
+
+     /*
 
     public Staff fromStaffInfoRequest(int id, boolean management, String name, String contract, int hours) {
         return Staff.builder()
@@ -38,21 +46,8 @@ public class StaffFactory {
                 .contract(contract)
                 .hours(hours)
                 .build();
-
-    }
-
-    public Staff fromEntity(StaffEntity staffEntity) {
-        return Staff.builder()
-                .id(StaffEntity.getId())
-                .management(StaffEntity.getManagement())
-                .name(StaffEntity.getName())
-                .contract(StaffEntity.getContract())
-                .hours(StaffEntity.getHours())
-                .build();
-
     }
 
     */
-
 }
 
