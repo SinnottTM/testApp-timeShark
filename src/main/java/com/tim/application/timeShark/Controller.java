@@ -12,6 +12,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tim.application.timeShark.model.Schedule;
 import com.tim.application.timeShark.model.Shift;
+import com.tim.application.timeShark.model.ShiftSchedule;
 import com.tim.application.timeShark.model.Staff;
 import com.tim.application.timeShark.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,8 @@ public class Controller {
     // Finding out shift rota (who is on each shift)
     @GetMapping(value = "/shift/find")
     public ScheduleResource requestShiftAll(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant shiftDate) {
-        Schedule schedule = scheduleService.findScheduleByShift(shiftDate);
-        return ScheduleFactory.fromModel(schedule);
+        ShiftSchedule shiftschedule = scheduleService.findScheduleByShift(shiftDate);
+        return ScheduleFactory.fromModel(shiftschedule);
     }
 
     // Finding out all shifts being covered by a particular staff
@@ -90,7 +91,6 @@ public class Controller {
         return ShiftFactory.fromModels(shifts);
     }
 
-
     //
     @GetMapping(value = "/schedule")
     public ScheduleResource scheduleOneWeek(@RequestParam Integer staffId, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant startDate) {
@@ -98,6 +98,11 @@ public class Controller {
         return ScheduleFactory.fromModel(schedule);
     }
 
+    @GetMapping(value = "/schedule/shift")
+    public ScheduleResource findScheduleByShift(@RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) Instant shiftDate) {
+        ShiftSchedule shiftschedule = scheduleService.findScheduleByShift(shiftDate);
+        return ScheduleFactory.fromModel(shiftschedule);
+    }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

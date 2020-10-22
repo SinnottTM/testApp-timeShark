@@ -33,6 +33,12 @@ public class StaffService {
         return staffRepository.findAll();
     }
 
+    public List<Staff> findStaffByIds(List<Integer> staffIds) {
+        List<StaffEntity> staffEntities = staffRepository.findAllById(staffIds);
+        return StaffFactory.fromEntities(staffEntities);
+    }
+
+
     /*
 
     public Staff findStaffShift(Integer id) {

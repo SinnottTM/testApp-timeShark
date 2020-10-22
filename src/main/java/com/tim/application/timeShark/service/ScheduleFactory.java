@@ -11,6 +11,7 @@ package com.tim.application.timeShark.service;
 
 import com.tim.application.timeShark.ScheduleResource;
 import com.tim.application.timeShark.model.Schedule;
+import com.tim.application.timeShark.model.ShiftSchedule;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class ScheduleFactory {
         // String dayOfTheWeekDisplayNameInEnglishShortHand = localShiftDate.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.ENGLISH);
 
         return ScheduleResource.builder()
-                .staffResource(StaffFactory.fromModel(schedule.getStaff()))
+                .staffResources(List.of(StaffFactory.fromModel(schedule.getStaff())))
                 .shiftResources(ShiftFactory.fromModels(schedule.getShifts()))
                 .build();
     }
@@ -34,7 +35,7 @@ public class ScheduleFactory {
     // To return a single scheduleResource Entity object with limited information from both tables using the ScheduleResource class
     public static ScheduleResource fromModelLimited(Schedule schedule) {
         return ScheduleResource.builder()
-                .staffResource(StaffFactory.fromModel(schedule.getStaff()))
+                .staffResources(List.of(StaffFactory.fromModel(schedule.getStaff())))
                 .build();
     }
 
@@ -48,5 +49,11 @@ public class ScheduleFactory {
         return scheduleResources;
     }
 
+    public static ScheduleResource fromModel(ShiftSchedule shiftschedule) {
+        return ScheduleResource.builder()
+                .staffResources(StaffFactory.fromModels(shiftschedule.getStaff()))
+                .shiftResources(List.of(ShiftFactory.fromModel(shiftschedule.getShift())))
+                .build();
+    }
 }
 

@@ -9,9 +9,14 @@
 package com.tim.application.timeShark.service;
 
 import com.tim.application.timeShark.StaffResource;
+import com.tim.application.timeShark.db.ShiftEntity;
 import com.tim.application.timeShark.db.StaffEntity;
+import com.tim.application.timeShark.model.Shift;
 import com.tim.application.timeShark.model.Staff;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class StaffFactory {
@@ -26,6 +31,15 @@ public class StaffFactory {
                 .build();
     }
 
+    public static List<Staff> fromEntities(List<StaffEntity> staffEntities) {
+        List<Staff> staffs = new ArrayList<>();
+        for (StaffEntity staffEntity : staffEntities) {
+            Staff staff = fromEntity(staffEntity);
+            staffs.add(staff);
+        }
+        return staffs;
+    }
+
     public static StaffResource fromModel(Staff staff) {
         return StaffResource.builder()
                 .id(staff.getId())
@@ -34,6 +48,15 @@ public class StaffFactory {
                 .contract(staff.getContract())
                 .hours(staff.getHours())
                 .build();
+    }
+
+    public static List<StaffResource> fromModels(List<Staff> staffs) {
+        List<StaffResource> staffResources = new ArrayList<>();
+        for (Staff singleStaff: staffs) {
+            StaffResource staffResource = fromModel(singleStaff);
+            staffResources.add(staffResource);
+        }
+        return staffResources;
     }
 
      /*

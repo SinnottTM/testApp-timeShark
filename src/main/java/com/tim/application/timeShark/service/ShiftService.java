@@ -65,6 +65,11 @@ public class ShiftService {
         return ShiftFactory.fromEntities(shiftEntities);
     }
 
+    public List<Shift> findShiftsByShiftDate(Instant shiftDate) {
+        List<ShiftEntity> shiftEntities = shiftRepository.findByShiftDate(shiftDate);
+        return ShiftFactory.fromEntities(shiftEntities);
+    }
+
     /*
 
     // Same as above, but using Hql Query rather than JPA automatically doing the query work

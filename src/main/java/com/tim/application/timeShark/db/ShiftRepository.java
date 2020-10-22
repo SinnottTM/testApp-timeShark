@@ -23,6 +23,8 @@ public interface ShiftRepository extends JpaRepository<ShiftEntity, Integer> {
 
     List<ShiftEntity> findByShiftDateGreaterThanAndShiftDateLessThan(Instant now, Instant nextWeek);
 
+    List<ShiftEntity> findByShiftDate(Instant shiftDate);
+
     /*
 
     // Same basic idea as above but allows you to specify exactly what you need. Hql = Hibernate Query Language. Use Hql when you need programs to be adaptable (can work between various languages etc).

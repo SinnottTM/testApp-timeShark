@@ -17,7 +17,6 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-
 public class Schedule {
 
     Staff staff;
